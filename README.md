@@ -1,37 +1,25 @@
-## Welcome to GitHub Pages
+## Welcome to Airflow Docker!
 
-You can use the [editor on GitHub](https://github.com/airflowdocker/airflowdocker.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### What is it?
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Airflow Docker is an extension to the open source project [Airflow](https://airflow.apache.org/).  Specifically it provides a base operator, forked from the existing docker operator, and a number of operators, and sensors on top of it, all that are fundamentally a wrapped `docker run` command.
 
-### Markdown
+### Ok. Its docker. We get it. But why?!?
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+By standardizing around a single execution pattern, namely _everything_ is a docker operator, a number of benefits fall into place:
 
-```markdown
-Syntax highlighted code block
+1. All of the normal benefits of docker. Shared layers, immutable artifacts, artifact versioning, etc.
+2. Because everything, from a sensor, to a short circuit operation, to a sql query type operation, to a standard python type operation, we were able to begin to build useful building blocks that augmented this standard run time behavior.
+3. Isolation with respect to the airflow deployment itself - we can feel a lot more confident upgrading airflow or one of its dependencies if that has almost no chance of breaking somene's tasks.
 
-# Header 1
-## Header 2
-### Header 3
+### So what is included?
 
-- Bulleted
-- List
+1. [airflow-docker](https://github.com/airflowdocker/airflow-docker): This is the core library. It is inteded to be installed in the same environment as airflow.  We publish python packages to the python package index and a couple of purpose build docker images to dockerhub.
+2. [airflow-docker-helper](https://github.com/airflowdocker/airflow-docker-helper): This is a lightweight, pure python library intended to be installed in your docker images that provides useful primitives for interacting with airflow from within the context of a running docker container.
 
-1. Numbered
-2. List
+... And more
 
-**Bold** and _Italic_ and `Code` text
+### List of Repos
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/airflowdocker/airflowdocker.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Github Repos: https://github.com/airflowdocker
+Slack: https://join.slack.com/t/airflow-docker/shared_invite/enQtODQ1MjUzNjc5NzAzLTNjOTkzNmQwNzQ4NGI4MmIzMzdlZTIzZGRjNWVhMTliNGRkOWZhMTJmZDcyNmY2ZTU4ODU3OTQ0NTJmNzdjMDQ
